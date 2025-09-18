@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmos | An Inquiry into Reality</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8;
+    }
+    .card {
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      padding: 1.5rem;
+      transition: all 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #003f5c;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 350px;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+  <header class="text-center py-8 border-b border-gray-200 bg-white shadow-sm">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#003f5c] to-[#bc5090]">
+      An Inquiry into Reality
+    </h1>
+    <p class="mt-2 text-gray-500">Exploring the Cosmos</p>
+
+    <!-- Navigation -->
+    <nav class="mt-4 flex justify-center gap-6 text-lg font-semibold">
+      <a href="index.html" class="hover:text-[#bc5090]">Home</a>
+      <a href="cosmos.html" class="text-[#bc5090]">Cosmos</a>
+      <a href="scientific.html" class="hover:text-[#bc5090]">Science</a>
+      <a href="advaita.html" class="hover:text-[#bc5090]">Advaita</a>
+      <a href="consciousness.html" class="hover:text-[#bc5090]">Consciousness</a>
+      <a href="convergences.html" class="hover:text-[#bc5090]">Convergences</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-16">
+      <h2 class="section-title">The Grand Scale of the Universe</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="card">
+          <h3 class="text-lg font-semibold text-[#58508d] mb-2">Age</h3>
+          <p class="text-3xl font-bold text-[#ff6361]">13.8 Billion Years</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-[#58508d] mb-2">Size</h3>
+          <p class="text-3xl font-bold text-[#ff6361]">93 Billion Light-Years</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-[#58508d] mb-2">Speed of Light</h3>
+          <p class="text-3xl font-bold text-[#ff6361]">299,792 km/s</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="section-title">What is the Universe Made Of?</h2>
+      <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+        Our universe is mostly invisible. Ordinary matter — everything we see — makes up just a tiny fraction.
+      </p>
+      <div class="chart-container">
+        <canvas id="compositionChart"></canvas>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">A Deeper Look</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card">
+          <h3 class="font-bold text-xl text-[#003f5c] mb-3">Dark Energy</h3>
+          <p class="text-gray-600">
+            Making up about 68% of the cosmos, dark energy drives the accelerated expansion of the universe.
+            Its nature remains one of the biggest mysteries in physics.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="font-bold text-xl text-[#003f5c] mb-3">Dark Matter</h3>
+          <p class="text-gray-600">
+            About 27% of the universe is composed of dark matter, which does not emit light but exerts gravity.
+            It holds galaxies together like an invisible scaffolding.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="font-bold text-xl text-[#003f5c] mb-3">Normal Matter</h3>
+          <p class="text-gray-600">
+            Just 5% of the universe is ordinary matter — stars, planets, people. The stuff we study directly.
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="font-bold text-xl text-[#003f5c] mb-3">Speculative Frontiers</h3>
+          <p class="text-gray-600">
+            Concepts like multiverses and extra dimensions suggest the cosmos may be far stranger than our current models reveal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 border-t border-gray-200 mt-12">
+    <p class="text-sm text-gray-500">Created by Varun</p>
+  </footer>
+
+  <!-- Chart.js Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('compositionChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Dark Energy', 'Dark Matter', 'Normal Matter'],
+          datasets: [{
+            data: [68, 27, 5],
+            backgroundColor: ['#003f5c', '#58508d', '#ff6361'],
+            borderColor: '#fff',
+            borderWidth: 3,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '65%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#374151',
+                font: {
+                  size: 14,
+                  family: "'Inter', sans-serif"
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#003f5c',
+              titleFont: { size: 16, weight: 'bold' },
+              bodyFont: { size: 14 },
+              callbacks: {
+                label: (context) => `${context.parsed}% of the Universe`
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
