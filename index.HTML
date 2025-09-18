@@ -54,55 +54,80 @@
     </style>
 </head>
 <body class="text-gray-800">
+    <header class="text-center py-8 border-b border-gray-200 bg-white shadow-sm">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-indigo-700 tracking-wide mb-4" style="font-family: 'Bebas Neue', sans-serif;">
+        CosmiCanvas
+    </h1>
+    <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#003f5c] to-[#bc5090]">
+        An Inquiry into Reality
+    </h1>
+    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+        A visual synthesis of modern science and timeless philosophy on the universe, consciousness, and the nature of existence.
+    </p>
 
+    <!-- Navigation -->
+    <nav class="mt-6 flex justify-center gap-6 text-lg font-semibold">
+        <!-- <a href="index.html" class="hover:text-[#bc5090]">Home</a> -->
+        <a href="cosmos.html" class="text-[#bc5090]">Cosmos</a>
+        <a href="science.html" class="hover:text-[#bc5090]">Science</a>
+        <a href="advaita.html" class="hover:text-[#bc5090]">Advaita</a>
+        <a href="consciousness.html" class="hover:text-[#bc5090]">Consciousness</a>
+        <a href="convergences.html" class="hover:text-[#bc5090]">Convergences</a>
+    </nav>
+</header>
 
-    <!-- <a href="cosmos.html" class="card block hover:shadow-xl transition">
-    <h3 class="text-lg font-semibold text-[#58508d] mb-2">Age of the Universe</h3>
-    <p class="stat-number">13.8</p>
-    <p class="text-gray-600 font-medium">Billion Years</p>
-</a> -->
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <header class="text-center mb-16">
-<h1 class="text-5xl md:text-6xl font-extrabold text-indigo-700 tracking-wide mb-4" style="font-family: 'Bebas Neue', sans-serif;">
-  CosmiCanvas
-</h1>
-<h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#003f5c] to-[#bc5090]">
-  An Inquiry into Reality
-</h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">A visual synthesis of modern science and timeless philosophy on the universe, consciousness, and the nature of existence.</p>
+        <header class="text-center mb-16">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-indigo-700 tracking-wide mb-4" style="font-family: 'Bebas Neue', sans-serif;">
+        CosmiCanvas
+        </h1>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#003f5c] to-[#bc5090]">
+        An Inquiry into Reality
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">A visual synthesis of modern science and timeless philosophy on the universe, consciousness, and the nature of existence.</p>
         </header>
 
         <section id="cosmos" class="mb-20">
-            <h2 class="section-title">The Grand Scale of the Cosmos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-center">
-                <div class="card">
-                    <a href="cosmos.html" class="card block hover:shadow-xl transition">
-                    <h3 class="text-lg font-semibold text-[#58508d] mb-2">Age of the Universe</h3>
-                    <p class="stat-number">13.8</p>
-                    <p class="text-gray-600 font-medium">Billion Years</p>
-                </div>
-                <div class="card">
-                    <h3 class="text-lg font-semibold text-[#58508d] mb-2">Observable Diameter</h3>
-                    <p class="stat-number">93</p>
-                    <p class="text-gray-600 font-medium">Billion Light-Years</p>
-                </div>
-                <div class="card">
-                    <h3 class="text-lg font-semibold text-[#58508d] mb-2">Cosmic Speed Limit</h3>
-                    <p class="stat-number">299,792</p>
-                    <p class="text-gray-600 font-medium">km/s (Speed of Light)</p>
-                </div>
-            </div>
+    <h2 class="section-title">The Grand Scale of the Cosmos</h2>
 
-            <div class="card md:col-span-2">
-                <h3 class="text-xl font-bold text-center text-[#003f5c] mb-4">The Universe is Mostly Invisible</h3>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">The stars, planets, and galaxies we see make up a surprisingly small fraction of the universe's total mass-energy content. The vast majority is composed of mysterious dark matter and dark energy.</p>
-                <div class="chart-container">
-                    <canvas id="compositionChart"></canvas>
-                </div>
+    <!-- Grid of Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-center">
+        <a href="#" class="card block hover:shadow-xl transition">
+            <h3 class="text-lg font-semibold text-[#58508d] mb-2">Age of the Universe</h3>
+            <p class="stat-number">13.8</p>
+            <p class="text-gray-600 font-medium">Billion Years</p>
+        </a>
+
+        <div class="card">
+            <h3 class="text-lg font-semibold text-[#58508d] mb-2">Observable Diameter</h3>
+            <p class="stat-number">93</p>
+            <p class="text-gray-600 font-medium">Billion Light-Years</p>
+        </div>
+
+        <div class="card">
+            <h3 class="text-lg font-semibold text-[#58508d] mb-2">Cosmic Speed Limit</h3>
+            <p class="stat-number">299,792</p>
+            <p class="text-gray-600 font-medium">km/s (Speed of Light)</p>
+        </div>
+    </div>
+
+    <!-- Chart Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card md:col-span-2">
+            <h3 class="text-xl font-bold text-center text-[#003f5c] mb-4">The Universe is Mostly Invisible</h3>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+                The stars, planets, and galaxies we see make up a surprisingly small fraction of the universe's total mass-energy content. The vast majority is composed of mysterious dark matter and dark energy.
+            </p>
+            <div class="chart-container">
+                <canvas id="compositionChart"></canvas>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
 
         <section id="reality" class="mb-20">
             <h2 class="section-title">Two Lenses on Reality</h2>
@@ -217,7 +242,7 @@
     </div>
 
     <footer class="text-center py-8 border-t border-gray-200 mt-12">
-        <p class="text-sm text-gray-500">Created by Varun</p>
+        <p class="text-sm text-gray-500">Infographic by Gemini AI | Data synthesized from scientific and philosophical sources | September 18, 2025</p>
     </footer>
 
     <script>

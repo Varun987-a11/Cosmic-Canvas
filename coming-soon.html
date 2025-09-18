@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon | CosmiCanvas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .title {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff6361, #bc5090, #003f5c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      animation: glow 2.5s infinite alternate;
+    }
+    .message {
+      font-size: 1.5rem;
+      max-width: 600px;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ff6361, 0 0 20px #bc5090; }
+      50% { text-shadow: 0 0 20px #003f5c, 0 0 30px #ff6361; }
+      100% { text-shadow: 0 0 10px #bc5090, 0 0 20px #003f5c; }
+    }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="title">Cosmic Canvas</h1>
+  <p class="message">
+    🚀 The universe is still expanding… and so is our site!  
+    Brace yourself for an immersive journey through the cosmos.  
+    New content about the universe, consciousness, and reality is on its way.
+  </p>
+
+  <p class="footer">Created by Varun ✨</p>
+
+</body>
+</html>
