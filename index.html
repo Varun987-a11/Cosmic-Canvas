@@ -12,18 +12,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Custom Tailwind Configuration (using the brilliant blues/purples) */
+        /* Custom Tailwind Configuration */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
+                        // New gradient colors for the Cosmic Canvas theme
+                        'cosmic-blue-dark': '#1a202c', // Very dark blue, almost black (slate-900)
+                        'cosmic-purple': '#4c1d95',   // Darker purple (violet-800)
+                        'cosmic-violet': '#7c3aed',   // Dark violet (violet-600)
+
+                        // Existing colors, adapted for the new palette
                         'primary-blue': '#4c51bf', /* Tailwind indigo-700 equivalent */
-                        'accent-pink': '#bc5090',
+                        'accent-pink': '#bc5090', // Keeping this for contrast with violet
+
                         'cosmic-dark': '#0f172a', /* Slate 900 */
                         'cosmic-light': '#f8fafc', /* Slate 50 */
-                        'data-a': '#003f5c',
-                        'data-b': '#58508d',
-                        'data-c': '#ff6361',
+                        
+                        // Data colors, adjusted to fit the new gradient
+                        'data-a': '#003f5c', // Keep a dark blue
+                        'data-b': '#58508d', // Keep a muted purple
+                        'data-c': '#ff6361', // Keep a vibrant red for contrast
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
@@ -38,6 +47,7 @@
             font-family: 'Inter', sans-serif;
             /* Subtle blue gradient background for an 'infographic' feel */
             background-image: linear-gradient(to top right, #f0f4f8, #e2e8f0); 
+            color: #1a202c; /* Ensure dark text on light background */
         }
 
         /* Card enhancement: More depth and consistent styling */
@@ -60,7 +70,7 @@
             font-weight: 800;
             line-height: 1;
             /* Use a gradient for extra pop */
-            background-image: linear-gradient(to right, #ff6361, #bc5090);
+            background-image: linear-gradient(to right, #ff6361, #bc5090); /* Kept this vibrant for strong contrast */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -70,7 +80,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.75rem;
             font-weight: 700;
-            color: #003f5c;
+            color: #1a202c; /* Darker title color */
             margin-bottom: 2.5rem;
             text-align: center;
             position: relative;
@@ -83,7 +93,8 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, #003f5c, #bc5090);
+            /* APPLYING NEW GRADIENT HERE */
+            background: linear-gradient(to right, theme('colors.cosmic-blue-dark'), theme('colors.cosmic-purple'), theme('colors.cosmic-violet'));
             border-radius: 9999px;
         }
 
@@ -103,7 +114,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         <header class="text-center py-10 mb-16 bg-white rounded-3xl shadow-2xl border-t-8 border-primary-blue/70">
-            <h1 class="text-6xl md:text-7xl font-extrabold font-display **text-gray-900** bg-clip-text bg-gradient-to-r from-primary-blue to-accent-pink tracking-tight **text-transparent**">
+            <h1 class="text-6xl md:text-7xl font-extrabold font-display bg-clip-text text-transparent 
+                        bg-gradient-to-r from-cosmic-blue-dark via-cosmic-purple to-cosmic-violet tracking-tight">
                 CosmiCanvas
             </h1>
             <h2 class="text-3xl font-display font-medium text-gray-700 mt-2">
@@ -114,10 +126,10 @@
             </p>
 
             <nav class="mt-8 flex justify-center flex-wrap gap-4 md:gap-8 text-lg font-semibold font-display">
-                <a href="#cosmos" class="text-primary-blue hover:text-accent-pink transition duration-300 transform hover:scale-105">🪐 Cosmos</a>
-                <a href="#reality" class="text-primary-blue hover:text-accent-pink transition duration-300 transform hover:scale-105">☯️ Reality Models</a>
-                <a href="#consciousness" class="text-primary-blue hover:text-accent-pink transition duration-300 transform hover:scale-105">🧠 Consciousness</a>
-                <a href="#convergences" class="text-primary-blue hover:text-accent-pink transition duration-300 transform hover:scale-105">🔗 Convergences</a>
+                <a href="#cosmos" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🪐 Cosmos</a>
+                <a href="#reality" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">☯️ Reality Models</a>
+                <a href="#consciousness" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🧠 Consciousness</a>
+                <a href="#convergences" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🔗 Convergences</a>
             </nav>
         </header>
 
@@ -202,7 +214,7 @@
                 <div class="card flex flex-col border-t-4 border-accent-pink">
                     <h3 class="text-3xl font-bold font-display text-accent-pink mb-6 text-center">✨ The Advaita View: Non-Dualism</h3>
                     <p class="text-gray-600 mb-8 flex-grow text-lg leading-relaxed">
-                        Advaita Vedānta proposes a **non-dualistic** reality. It suggests the universe of separate parts is an **illusion (Māyā)**, a temporary projection onto a single, indivisible, conscious whole (**Brahman**).
+                        Advaita Vedānta proposes a non-dualistic reality. It suggests the universe of separate parts is an **illusion (Māyā)**, a temporary projection onto a single, indivisible, conscious whole (**Brahman**).
                     </p>
                     <div class="space-y-4 text-center font-medium">
                         <div class="p-4 border-4 border-accent-pink rounded-xl bg-pink-50/50 shadow-md">
@@ -217,7 +229,7 @@
                         <div class="text-4xl text-data-c animate-pulse">↓</div>
                         <div class="p-4 border-4 border-data-c rounded-xl bg-red-50/50 shadow-md">
                             <h4 class="font-bold text-2xl text-data-c">The Perceived Universe</h4>
-                            <p class="text-base text-gray-600">The world of names, forms, and objects we experience.</p>
+                            <p class="text-base text-gray-600">A world of separate objects, minds, and selves.</p>
                         </div>
                     </div>
                 </div>
@@ -227,36 +239,36 @@
         <section id="consciousness" class="mb-24">
             <h2 class="section-title">The Ultimate Enigma: Consciousness</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="card border-l-4 border-indigo-500">
+                <div class="card border-l-4 border-cosmic-purple">
                     <div class="text-center">
                         <span class="text-6xl">🧠</span>
-                        <h3 class="text-3xl font-bold font-display text-primary-blue mt-4 mb-2">Consciousness as Emergent</h3>
+                        <h3 class="text-3xl font-bold font-display text-cosmic-purple mt-4 mb-2">Consciousness as Emergent</h3>
                         <p class="text-lg font-semibold text-gray-500 mb-6">(The Materialist View)</p>
                     </div>
                     <p class="text-gray-600 leading-relaxed">
                         This perspective holds that consciousness is an **epiphenomenon**—a product of the brain. It arises from the complex electrochemical activity of billions of neurons, much like wetness emerges from water molecules.
                     </p>
                     <ul class="mt-6 space-y-3 text-gray-700 font-medium">
-                        <li class="flex items-start"><span class="text-primary-blue text-xl mr-3 leading-none">•</span>**Origin:** Produced by biological complexity.</li>
-                        <li class="flex items-start"><span class="text-primary-blue text-xl mr-3 leading-none">•</span>**Location:** Localized within the brain structure.</li>
-                        <li class="flex items-start"><span class="text-primary-blue text-xl mr-3 leading-none">•</span>**Duration:** Ceases to exist upon brain death.</li>
-                        <li class="flex items-start"><span class="text-primary-blue text-xl mr-3 leading-none">•</span>**The Hurdle:** The "Hard Problem"—explaining *subjective experience* (qualia).</li>
+                        <li class="flex items-start"><span class="text-cosmic-purple text-xl mr-3 leading-none">•</span>**Origin:** Produced by biological complexity.</li>
+                        <li class="flex items-start"><span class="text-cosmic-purple text-xl mr-3 leading-none">•</span>**Location:** Localized within the brain structure.</li>
+                        <li class="flex items-start"><span class="text-cosmic-purple text-xl mr-3 leading-none">•</span>**Duration:** Ceases to exist upon brain death.</li>
+                        <li class="flex items-start"><span class="text-cosmic-purple text-xl mr-3 leading-none">•</span>**The Hurdle:** The "Hard Problem"—explaining *subjective experience* (qualia).</li>
                     </ul>
                 </div>
-                <div class="card border-l-4 border-pink-500">
+                <div class="card border-l-4 border-cosmic-violet">
                     <div class="text-center">
                         <span class="text-6xl">🌌</span>
-                        <h3 class="text-3xl font-bold font-display text-accent-pink mt-4 mb-2">Consciousness as Fundamental</h3>
+                        <h3 class="text-3xl font-bold font-display text-cosmic-violet mt-4 mb-2">Consciousness as Fundamental</h3>
                         <p class="text-lg font-semibold text-gray-500 mb-6">(The Panpsychist/Idealist View)</p>
                     </div>
                     <p class="text-gray-600 leading-relaxed">
                         This view suggests consciousness is the **primary reality**, a basic property of the universe (like mass or charge). The brain doesn't create it; it acts as a receiver or filter for a universal field of consciousness.
                     </p>
                     <ul class="mt-6 space-y-3 text-gray-700 font-medium">
-                        <li class="flex items-start"><span class="text-accent-pink text-xl mr-3 leading-none">•</span>**Origin:** The ground of all being; uncreated.</li>
-                        <li class="flex items-start"><span class="text-accent-pink text-xl mr-3 leading-none">•</span>**Location:** Non-local and universal (Panpsychism).</li>
-                        <li class="flex items-start"><span class="text-accent-pink text-xl mr-3 leading-none">•</span>**Duration:** Eternal; individual self is a localized expression.</li>
-                        <li class="flex items-start"><span class="text-accent-pink text-xl mr-3 leading-none">•</span>**The Hurdle:** The "Combination Problem"—how do micro-conscious elements combine into macro-consciousness?</li>
+                        <li class="flex items-start"><span class="text-cosmic-violet text-xl mr-3 leading-none">•</span>**Origin:** The ground of all being; uncreated.</li>
+                        <li class="flex items-start"><span class="text-cosmic-violet text-xl mr-3 leading-none">•</span>**Location:** Non-local and universal (Panpsychism).</li>
+                        <li class="flex items-start"><span class="text-cosmic-violet text-xl mr-3 leading-none">•</span>**Duration:** Eternal; individual self is a localized expression.</li>
+                        <li class="flex items-start"><span class="text-cosmic-violet text-xl mr-3 leading-none">•</span>**The Hurdle:** The "Combination Problem"—how do micro-conscious elements combine into macro-consciousness?</li>
                     </ul>
                 </div>
             </div>
@@ -297,7 +309,7 @@
 
     <footer class="text-center py-8 mt-16 bg-cosmic-dark text-gray-400">
         <p class="text-sm">CosmiCanvas | A Data & Philosophical Inquiry | © 2025</p>
-        <p class="text-xs mt-2">Design inspired by Brilliant Blues Palette.</p>
+        <p class="text-xs mt-2">Design inspired by the depths of the cosmos.</p>
     </footer>
 
     <script>
