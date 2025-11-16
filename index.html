@@ -17,22 +17,22 @@
             theme: {
                 extend: {
                     colors: {
-                        // New gradient colors for the Cosmic Canvas theme
+                        // Gradient colors for the Cosmic Canvas theme
                         'cosmic-blue-dark': '#1a202c', // Very dark blue, almost black (slate-900)
                         'cosmic-purple': '#4c1d95',   // Darker purple (violet-800)
                         'cosmic-violet': '#7c3aed',   // Dark violet (violet-600)
 
-                        // Existing colors, adapted for the new palette
-                        'primary-blue': '#4c51bf', /* Tailwind indigo-700 equivalent */
-                        'accent-pink': '#bc5090', // Keeping this for contrast with violet
+                        // Base accents
+                        'primary-blue': '#4c51bf', 
+                        'accent-pink': '#bc5090', 
 
-                        'cosmic-dark': '#0f172a', /* Slate 900 */
-                        'cosmic-light': '#f8fafc', /* Slate 50 */
+                        'cosmic-dark': '#0f172a', 
+                        'cosmic-light': '#f8fafc', 
                         
-                        // Data colors, adjusted to fit the new gradient
-                        'data-a': '#003f5c', // Keep a dark blue
-                        'data-b': '#58508d', // Keep a muted purple
-                        'data-c': '#ff6361', // Keep a vibrant red for contrast
+                        // Data colors, retained for chart contrast
+                        'data-a': '#003f5c', 
+                        'data-b': '#58508d', 
+                        'data-c': '#ff6361', 
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
@@ -45,15 +45,14 @@
         /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
-            /* Subtle blue gradient background for an 'infographic' feel */
             background-image: linear-gradient(to top right, #f0f4f8, #e2e8f0); 
-            color: #1a202c; /* Ensure dark text on light background */
+            color: #1a202c; 
         }
 
         /* Card enhancement: More depth and consistent styling */
         .card {
             background-color: white;
-            border-radius: 1.25rem; /* More rounded corners */
+            border-radius: 1.25rem; 
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -66,11 +65,10 @@
 
         /* Numerical Stats */
         .stat-number {
-            font-size: 3.5rem; /* Larger numbers */
+            font-size: 3.5rem; 
             font-weight: 800;
             line-height: 1;
-            /* Use a gradient for extra pop */
-            background-image: linear-gradient(to right, #ff6361, #bc5090); /* Kept this vibrant for strong contrast */
+            background-image: linear-gradient(to right, #ff6361, #bc5090);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -80,7 +78,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.75rem;
             font-weight: 700;
-            color: #1a202c; /* Darker title color */
+            color: #1a202c; 
             margin-bottom: 2.5rem;
             text-align: center;
             position: relative;
@@ -93,7 +91,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            /* APPLYING NEW GRADIENT HERE */
+            /* Applying the dark gradient to the underline */
             background: linear-gradient(to right, theme('colors.cosmic-blue-dark'), theme('colors.cosmic-purple'), theme('colors.cosmic-violet'));
             border-radius: 9999px;
         }
@@ -102,7 +100,7 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 450px; /* Slightly wider chart */
+            max-width: 450px; 
             margin-left: auto;
             margin-right: auto;
             height: 400px;
@@ -126,10 +124,11 @@
             </p>
 
             <nav class="mt-8 flex justify-center flex-wrap gap-4 md:gap-8 text-lg font-semibold font-display">
-                <a href="#cosmos" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🪐 Cosmos</a>
-                <a href="#reality" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">☯️ Reality Models</a>
-                <a href="#consciousness" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🧠 Consciousness</a>
-                <a href="#convergences" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">🔗 Convergences</a>
+                <a href="cosmos.html" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">Cosmos</a>
+                <a href="science.html" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">Science</a>
+                <a href="advaita.html" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">Advaita</a>
+                <a href="consciousness.html" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">Consciousness</a>
+                <a href="convergences.html" class="text-cosmic-purple hover:text-cosmic-violet transition duration-300 transform hover:scale-105">Convergences</a>
             </nav>
         </header>
 
@@ -214,7 +213,7 @@
                 <div class="card flex flex-col border-t-4 border-accent-pink">
                     <h3 class="text-3xl font-bold font-display text-accent-pink mb-6 text-center">✨ The Advaita View: Non-Dualism</h3>
                     <p class="text-gray-600 mb-8 flex-grow text-lg leading-relaxed">
-                        Advaita Vedānta proposes a non-dualistic reality. It suggests the universe of separate parts is an **illusion (Māyā)**, a temporary projection onto a single, indivisible, conscious whole (**Brahman**).
+                        Advaita Vedānta proposes a **non-dualistic** reality. It suggests the universe of separate parts is an **illusion (Māyā)**, a temporary projection onto a single, indivisible, conscious whole (**Brahman**).
                     </p>
                     <div class="space-y-4 text-center font-medium">
                         <div class="p-4 border-4 border-accent-pink rounded-xl bg-pink-50/50 shadow-md">
