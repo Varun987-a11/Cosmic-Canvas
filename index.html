@@ -1,461 +1,300 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Nature of Reality: An Infographic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Custom Tailwind Configuration - Set to use 'class' for dark mode control */
-        tailwind.config = {
-            darkMode: 'class', // <--- IMPORTANT: Enables class-based dark mode
-            theme: {
-                extend: {
-                    colors: {
-                        // Core Cosmic Gradient (Dark to Bright)
-                        'cosmic-blue-dark': '#1a202c', // Slate 900
-                        'cosmic-purple': '#4c1d95',   // Violet 800
-                        'cosmic-violet': '#7c3aed',   // Violet 600
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cosmic Canvas — The Nature of Reality</title>
 
-                        // DARK MODE COLOR SYSTEM (Coder Vibes)
-                        'cosmic-darker': '#0a0d14', // Deep, near-black primary background
-                        'cosmic-dark': '#1f2937',   // Dark gray (slate 800) for cards/secondary backgrounds
-                        'cosmic-light': '#e0e7ff',  // Light text/accents (indigo 100)
-                        
-                        // Base accents
-                        'primary-blue': '#4c51bf', 
-                        'accent-pink': '#bc5090', 
-                        
-                        // Data colors (keep them high contrast for chart)
-                        'data-a': '#003f5c', // Dark Blue
-                        'data-b': '#58508d', // Muted Purple
-                        'data-c': '#ff6361', // Vibrant Red/Coral
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                        'display': ['Space Grotesk', 'sans-serif'],
-                    }
-                }
-            }
-        }
+  <!-- Tailwind CDN + Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        /* Base styles (Defaulting to Dark Mode, but defining both for the switch) */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: theme('colors.cosmic-darker'); /* Dark Mode Default */
-            color: theme('colors.cosmic-light'); /* Dark Mode Default */
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        
-        /* Light Mode Overrides */
-        .light body {
-            background-image: linear-gradient(to top right, #f0f4f8, #e2e8f0); 
-            color: #1a202c; 
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
-        /* Card enhancement: Adjusted for Dark Mode (set dark as default) */
-        .card {
-            background-color: theme('colors.cosmic-dark'); /* Dark Mode Card Default */
-            border-radius: 1.25rem; 
-            box-shadow: 0 10px 15px -3px rgba(theme('colors.cosmic-purple'), 0.1), 0 4px 6px -4px rgba(theme('colors.cosmic-purple'), 0.05);
-            padding: 2rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid theme('colors.cosmic-purple');
-        }
-        .light .card {
-            background-color: white; /* Light Mode Card */
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(theme('colors.cosmic-purple'), 0.2), 0 8px 10px -6px rgba(theme('colors.cosmic-purple'), 0.1);
-        }
+  <meta name="description" content="Cosmic Canvas — visual essays and concise explainer pages on cosmology, consciousness and convergence." />
 
-        /* Numerical Stats - Keep vibrant for both modes */
-        .stat-number {
-            font-size: 3.5rem; 
-            font-weight: 800;
-            line-height: 1;
-            background-image: linear-gradient(to right, #ff6361, #bc5090);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <style>
+    :root{
+      --bg-1: #041226; /* deep */
+      --bg-2: #07101a;
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.75);
+      --accent-1: #7c3aed; /* violet */
+      --accent-2: #06b6d4; /* cyan */
+      --accent-3: #ff6361; /* coral */
+      --card-bg: rgba(255,255,255,0.03);
+    }
 
-        /* Section Titles - Ensure visibility in both modes (Dark Mode focused) */
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.75rem;
-            font-weight: 700;
-            color: theme('colors.cosmic-light'); /* Dark Mode Title Default */
-            margin-bottom: 2.5rem;
-            text-align: center;
-            position: relative;
-        }
-        .light .section-title {
-             color: #1a202c; /* Light Mode Title */
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            /* Applying the dark gradient to the underline */
-            background: linear-gradient(to right, theme('colors.cosmic-blue-dark'), theme('colors.cosmic-purple'), theme('colors.cosmic-violet'));
-            border-radius: 9999px;
-        }
+    /* Page background animation */
+    .bg-animate{background: radial-gradient(1200px 600px at 10% 20%, rgba(124,58,237,0.08), transparent 8%), radial-gradient(900px 400px at 90% 80%, rgba(6,182,212,0.04), transparent 8%), linear-gradient(180deg,var(--bg-1), var(--bg-2)); background-blend-mode:screen,screen,normal; animation: shift 14s linear infinite;}
+    @keyframes shift{0%{background-position:0% 0%,100% 100%,0% 0%}50%{background-position:100% 10%,0% 90%,50% 50%}100%{background-position:0% 0%,100% 100%,0% 0%}}
 
-        /* Chart Area Control */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 450px; 
-            margin-left: auto;
-            margin-right: auto;
-            height: 400px;
-        }
-    </style>
+    body{font-family:'Inter',system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:var(--muted);min-height:100vh}
+
+    /* Glass card */
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
+
+    .grad-text{background:linear-gradient(90deg,var(--accent-1),#ec4899,var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    .orb{width:88px;height:88px;border-radius:9999px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(124,58,237,0.18) 30%, rgba(6,182,212,0.06) 60%); box-shadow:0 18px 60px rgba(2,6,23,0.6)}
+
+    .section-title{font-family:'Space Grotesk',system-ui, sans-serif; font-size:2.25rem; font-weight:700; color:var(--muted); margin-bottom:1.5rem; text-align:center;}
+    .section-title::after{content:'';display:block;margin:12px auto 0;width:80px;height:4px;border-radius:999px;background:linear-gradient(90deg,#0A1A7A,var(--accent-1),#4B0082)}
+
+    .card{background:var(--card-bg); border-radius:1rem; padding:1.75rem; border:1px solid rgba(255,255,255,0.06); transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(2,6,23,0.6)}
+
+    .stat-number{font-size:3.25rem; font-weight:800; line-height:1; background-image:linear-gradient(90deg,var(--accent-3),#bc5090); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+
+    /* Chart container sizing */
+    .chart-container{position:relative;width:100%;max-width:520px;height:360px;margin:0 auto}
+
+    /* utilities */
+    .muted{color:rgba(255,255,255,0.65)}
+
+    /* Light mode override (class on html element) */
+    html.light{ --bg-1: #f5f7fb; --bg-2:#e6eef9; --muted: #0f1724; --card-bg: rgba(255,255,255,1); }
+    html.light .glass{border-color: rgba(15,23,36,0.06); box-shadow:0 10px 25px rgba(2,6,23,0.05)}
+    html.light .card{border:1px solid #e6eef9}
+
+    @media (max-width:900px){.grid-3{grid-template-columns:repeat(2, minmax(0,1fr))}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr} .section-title{font-size:1.6rem}}
+  </style>
 </head>
-<body>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<body class="bg-animate">
 
-        <header class="text-center py-10 mb-16 bg-cosmic-dark light:bg-white rounded-3xl shadow-2xl border-t-8 border-primary-blue/70 relative">
-            
-            <div class="absolute top-5 right-5">
-                <button id="theme-toggle" class="p-3 rounded-full bg-gray-800 light:bg-gray-100 text-gray-200 light:text-gray-700 hover:scale-105 transition-transform duration-200 shadow-md">
-                    <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <header class="text-center py-10 mb-12 glass rounded-2xl relative">
+      <div class="absolute top-4 right-4">
+        <button id="theme-toggle" aria-label="Toggle theme" class="p-3 rounded-full bg-white/6 hover:scale-105 transition-transform">
+          <svg id="moon-icon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun-icon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364l-1.414-1.414M7.05 7.05L5.636 5.636m12.728 0L18.364 7.05M7.05 16.95l-1.414 1.414M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center gap-4">
+        <div class="orb"></div>
+        <div>
+          <h1 class="text-4xl md:text-6xl font-extrabold grad-text">CosmiCanvas</h1>
+          <p class="mt-2 text-lg muted">An Inquiry into Reality: Science & Philosophy</p>
+        </div>
+      </div>
+
+      <p class="mt-6 text-sm muted max-w-3xl mx-auto">A visual synthesis of modern physics and timeless philosophical systems on the nature of existence, the cosmos, and consciousness.</p>
+
+      <nav class="mt-8 flex justify-center gap-6 text-sm font-medium">
+        <a href="cosmos.html" class="hover:underline">🪐 Cosmos</a>
+        <a href="science.html" class="hover:underline">🔬 Science</a>
+        <a href="advaita.html" class="hover:underline">🕉️ Advaita</a>
+        <a href="consciousness.html" class="hover:underline">🧠 Consciousness</a>
+        <a href="convergences.html" class="hover:underline">🔗 Convergences</a>
+      </nav>
+    </header>
+
+    <section id="cosmos" class="mb-16">
+      <h2 class="section-title">The Grand Scale of the Cosmos</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 text-center">
+        <a class="card block">
+          <h3 class="text-xl font-semibold muted mb-3">Age of the Universe</h3>
+          <p class="stat-number">13.8</p>
+          <p class="mt-2 muted font-medium">Billion Years</p>
+        </a>
+
+        <div class="card">
+          <h3 class="text-xl font-semibold muted mb-3">Observable Diameter</h3>
+          <p class="stat-number">93</p>
+          <p class="mt-2 muted font-medium">Billion Light-Years</p>
+        </div>
+
+        <div class="card">
+          <h3 class="text-xl font-semibold muted mb-3">Cosmic Speed Limit</h3>
+          <p class="stat-number">299,792</p>
+          <p class="mt-2 muted font-medium">km/s (Speed of Light)</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div class="card lg:col-span-2">
+          <h3 class="text-2xl font-bold mb-4">The Universe is Mostly Invisible</h3>
+          <p class="muted text-lg leading-relaxed">The stars, planets, and galaxies we see make up a <strong>shockingly small ≈5%</strong> of the universe's mass-energy. The rest is dark matter and dark energy.</p>
+
+          <ul class="mt-6 space-y-2 text-sm muted">
+            <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-[#003f5c] mr-3 mt-1"></span><strong>Dark Energy</strong> (~68%): Accelerates cosmic expansion.</li>
+            <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-[#58508d] mr-3 mt-1"></span><strong>Dark Matter</strong> (~27%): Provides gravitational structure.</li>
+            <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-[#ff6361] mr-3 mt-1"></span><strong>Normal Matter</strong> (~5%): Everything we directly observe.</li>
+          </ul>
+        </div>
+
+        <div class="card lg:col-span-3 min-h-[360px] flex items-center justify-center">
+          <div class="chart-container">
+            <canvas id="compositionChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reality" class="mb-16">
+      <h2 class="section-title">Two Lenses on Reality</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="card">
+          <h3 class="text-2xl font-bold mb-4">🔬 The Scientific View: Reductionism</h3>
+          <p class="muted leading-relaxed">Science seeks to understand reality by breaking it down into its smallest components — quantum fields, particles, and emergent complexity.</p>
+
+          <ol class="mt-6 space-y-4 text-sm muted">
+            <li><strong>Quantum Fields</strong> — energetic fields underpin particles.</li>
+            <li><strong>Elementary Particles</strong> — quarks, electrons, photons.</li>
+            <li><strong>Emergent Complexity</strong> — from particles to galaxies and life.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3 class="text-2xl font-bold mb-4">✨ The Advaita View: Non-Dualism</h3>
+          <p class="muted leading-relaxed">Advaita Vedānta suggests non-dual reality: the apparent multiplicity is a projection (Māyā) on a single conscious ground (Brahman).</p>
+
+          <div class="mt-6 space-y-4 text-sm muted">
+            <div class="p-4 border rounded-lg">
+              <h4 class="font-semibold">Brahman — Ultimate Reality</h4>
+              <p>Pure consciousness; the unchanging ground.</p>
             </div>
-
-           <h1 class="text-6xl md:text-7xl font-extrabold font-display bg-clip-text text-transparent
-    bg-gradient-to-r from-[#0A1A7A] via-[#3B0F78] to-[#4B0082] tracking-tight">
-    CosmiCanvas
-</h1>
-
-            <h2 class="text-3xl font-display font-medium bg-clip-text text-transparent
-    bg-gradient-to-r from-[#0A1A7A] to-[#001F54] mt-2">
-    An Inquiry into Reality: Science & Philosophy
-</h2>
-
-            <p class="mt-4 text-lg text-gray-400 light:text-gray-500 max-w-4xl mx-auto">
-                A visual synthesis of modern physics and timeless philosophical systems on the nature of existence, the cosmos, and consciousness.
-            </p>
-
-            <nav class="mt-8 flex justify-center flex-wrap gap-4 md:gap-8 text-lg font-semibold font-display">
-                <a href="cosmos.html" class="text-cosmic-violet hover:text-cosmic-light transition duration-300 transform hover:scale-105">🪐 Cosmos</a>
-                <a href="science.html" class="text-cosmic-violet hover:text-cosmic-light transition duration-300 transform hover:scale-105">🔬 Science</a>
-                <a href="advaita.html" class="text-cosmic-violet hover:text-cosmic-light transition duration-300 transform hover:scale-105">🕉️ Advaita</a>
-                <a href="consciousness.html" class="text-cosmic-violet hover:text-cosmic-light transition duration-300 transform hover:scale-105">🧠 Consciousness</a>
-                <a href="convergences.html" class="text-cosmic-violet hover:text-cosmic-light transition duration-300 transform hover:scale-105">🔗 Convergences</a>
-            </nav>
-        </header>
-
-        <section id="cosmos" class="mb-24">
-            <h2 class="section-title">The Grand Scale of the Cosmos</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16 text-center">
-                
-                <a href="#" class="card block hover:shadow-xl transition">
-                    <h3 class="text-xl font-semibold text-cosmic-light light:text-data-b mb-3">Age of the Universe</h3>
-                    <p class="stat-number">13.8</p>
-                    <p class="text-gray-400 light:text-gray-600 font-medium text-lg">Billion Years</p>
-                </a>
-
-                <div class="card">
-                    <h3 class="text-xl font-semibold text-cosmic-light light:text-data-b mb-3">Observable Diameter</h3>
-                    <p class="stat-number">93</p>
-                    <p class="text-gray-400 light:text-gray-600 font-medium text-lg">Billion Light-Years</p>
-                </div>
-
-                <div class="card">
-                    <h3 class="text-xl font-semibold text-cosmic-light light:text-data-b mb-3">Cosmic Speed Limit</h3>
-                    <p class="stat-number">299,792</p>
-                    <p class="text-gray-400 light:text-gray-600 font-medium text-lg">km/s (Speed of Light)</p>
-                </div>
+            <div class="p-4 border rounded-lg">
+              <h4 class="font-semibold">Īśvara / Jīva</h4>
+              <p>The veiling power that gives rise to the sense of separate selves.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                <div class="card lg:col-span-2 flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold font-display text-cosmic-light light:text-data-a mb-4">The Universe is Mostly Invisible</h3>
-                    <p class="text-gray-400 light:text-gray-600 text-lg leading-relaxed">
-                        The stars, planets, and galaxies we see make up a <strong>shockingly small $\sim 5\%$</strong> of the universe's total mass-energy content. The vast majority is composed of mysterious dark matter and dark energy.
-                    </p>
-                    <ul class="mt-6 space-y-2 text-gray-300 light:text-gray-700">
-                        <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-data-a mr-3"></span><strong>Dark Energy</strong> ($68\%$): Accelerates cosmic expansion.</li>
-                        <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-data-b mr-3"></span><strong>Dark Matter</strong> ($27\%$): Provides gravitational pull for galaxies.</li>
-                        <li class="flex items-center"><span class="w-3 h-3 rounded-full bg-data-c mr-3"></span><strong>Normal Matter</strong> ($5\%$): Everything we can see and touch.</li>
-                    </ul>
-                </div>
+    <section id="consciousness" class="mb-16">
+      <h2 class="section-title">The Ultimate Enigma: Consciousness</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="card">
+          <div class="text-center">
+            <div class="text-5xl">🧠</div>
+            <h3 class="text-xl font-bold mt-3">Consciousness as Emergent</h3>
+            <p class="muted">The Materialist view: consciousness arises from complex neural processes.</p>
+          </div>
 
-                <div class="card lg:col-span-3 min-h-[400px] flex items-center justify-center">
-                    <div class="chart-container">
-                        <canvas id="compositionChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <ul class="mt-6 space-y-3 text-sm muted">
+            <li><strong>Origin:</strong> Emergent property of brain complexity.</li>
+            <li><strong>Location:</strong> Localized in biological systems.</li>
+            <li><strong>Hurdle:</strong> The "Hard Problem" — subjective experience.</li>
+          </ul>
+        </div>
 
-        <section id="reality" class="mb-24">
-            <h2 class="section-title">Two Lenses on Reality</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                <div class="card flex flex-col border-t-4 border-data-a">
-                    <h3 class="text-3xl font-bold font-display text-cosmic-light light:text-data-a mb-6 text-center">🔬 The Scientific View: Reductionism</h3>
-                    <p class="text-gray-400 light:text-gray-600 mb-8 flex-grow text-lg leading-relaxed">
-                        Science operates on <strong>reductionism</strong>, seeking to understand reality by breaking it down into its smallest components. The goal is to find the fundamental "building blocks" and the universal laws that govern them, assuming physical reality is primary.
-                    </p>
-                    <div class="space-y-6 text-left border-l-4 border-data-a/50 pl-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 text-3xl mr-4 text-data-c font-bold leading-none">1</div>
-                            <div>
-                                <h4 class="font-semibold text-xl text-gray-200 light:text-gray-800">Quantum Fields</h4>
-                                <p class="text-sm text-gray-400 light:text-gray-500">The most fundamental level is not solid particles, but energetic, vibrating fields.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 text-3xl mr-4 text-data-c font-bold leading-none">2</div>
-                            <div>
-                                <h4 class="font-semibold text-xl text-gray-200 light:text-gray-800">Elementary Particles</h4>
-                                <p class="text-sm text-gray-400 light:text-gray-500">Excitations in these fields give rise to particles like quarks and electrons, the components of all matter.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 text-3xl mr-4 text-data-c font-bold leading-none">3</div>
-                            <div>
-                                <h4 class="font-semibold text-xl text-gray-200 light:text-gray-800">Emergent Complexity</h4>
-                                <p class="text-sm text-gray-400 light:text-gray-500">From simple laws, all complexity arises—from molecules to life itself.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+          <div class="text-center">
+            <div class="text-5xl">🌌</div>
+            <h3 class="text-xl font-bold mt-3">Consciousness as Fundamental</h3>
+            <p class="muted">Panpsychist/Idealist view: consciousness is a basic property of reality.</p>
+          </div>
 
-                <div class="card flex flex-col border-t-4 border-accent-pink">
-                    <h3 class="text-3xl font-bold font-display text-cosmic-light light:text-accent-pink mb-6 text-center">✨ The Advaita View: Non-Dualism</h3>
-                    <p class="text-gray-400 light:text-gray-600 mb-8 flex-grow text-lg leading-relaxed">
-                        Advaita Vedānta proposes a <strong>non-dualistic</strong> reality. It suggests the universe of separate parts is an <strong>illusion (Māyā)</strong>, a temporary projection onto a single, indivisible, conscious whole (<strong>Brahman</strong>).
-                    </p>
-                    <div class="space-y-4 text-center font-medium">
-                        <div class="p-4 border-4 border-accent-pink rounded-xl bg-pink-900/50 light:bg-pink-50/50 shadow-md">
-                            <h4 class="font-bold text-2xl text-cosmic-light light:text-accent-pink">Brahman (Ultimate Reality)</h4>
-                            <p class="text-base text-gray-400 light:text-gray-600">Pure Consciousness, non-changing, absolute.</p>
-                        </div>
-                        <div class="text-4xl text-cosmic-light light:text-data-b animate-pulse">↓ (Māyā)</div>
-                        <div class="p-4 border-4 border-data-b rounded-xl bg-indigo-900/50 light:bg-indigo-50/50 shadow-md">
-                            <h4 class="font-bold text-2xl text-cosmic-light light:text-data-b">Īśvara / Jīva (The Veiling Power)</h4>
-                            <p class="text-base text-gray-400 light:text-gray-600">The cosmic illusion that creates the appearance of separation.</p>
-                        </div>
-                        <div class="text-4xl text-cosmic-light light:text-data-c animate-pulse">↓</div>
-                        <div class="p-4 border-4 border-data-c rounded-xl bg-red-900/50 light:bg-red-50/50 shadow-md">
-                            <h4 class="font-bold text-2xl text-cosmic-light light:text-data-c">The Perceived Universe</h4>
-                            <p class="text-base text-gray-400 light:text-gray-600">A world of separate objects, minds, and selves.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <ul class="mt-6 space-y-3 text-sm muted">
+            <li><strong>Origin:</strong> Ground of being; uncreated.</li>
+            <li><strong>Location:</strong> Non-local, universal.</li>
+            <li><strong>Hurdle:</strong> The "Combination Problem".</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        <section id="consciousness" class="mb-24">
-            <h2 class="section-title">The Ultimate Enigma: Consciousness</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="card border-l-4 border-cosmic-purple">
-                    <div class="text-center">
-                        <span class="text-6xl">🧠</span>
-                        <h3 class="text-3xl font-bold font-display text-cosmic-light light:text-cosmic-purple mt-4 mb-2">Consciousness as Emergent</h3>
-                        <p class="text-lg font-semibold text-gray-400 light:text-gray-500 mb-6">(The Materialist View)</p>
-                    </div>
-                    <p class="text-gray-400 light:text-gray-600 leading-relaxed">
-                        This perspective holds that consciousness is an <strong>epiphenomenon</strong>—a product of the brain. It arises from the complex electrochemical activity of billions of neurons, much like wetness emerges from water molecules.
-                    </p>
-                    <ul class="mt-6 space-y-3 text-gray-300 light:text-gray-700 font-medium">
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-purple text-xl mr-3 leading-none">•</span><strong>Origin:</strong> Produced by biological complexity.</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-purple text-xl mr-3 leading-none">•</span><strong>Location:</strong> Localized within the brain structure.</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-purple text-xl mr-3 leading-none">•</span><strong>Duration:</strong> Ceases to exist upon brain death.</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-purple text-xl mr-3 leading-none">•</span><strong>The Hurdle:</strong> The "Hard Problem"—explaining <strong>subjective experience</strong> (qualia).</li>
-                    </ul>
-                </div>
-                <div class="card border-l-4 border-cosmic-violet">
-                    <div class="text-center">
-                        <span class="text-6xl">🌌</span>
-                        <h3 class="text-3xl font-bold font-display text-cosmic-light light:text-cosmic-violet mt-4 mb-2">Consciousness as Fundamental</h3>
-                        <p class="text-lg font-semibold text-gray-400 light:text-gray-500 mb-6">(The Panpsychist/Idealist View)</p>
-                    </div>
-                    <p class="text-gray-400 light:text-gray-600 leading-relaxed">
-                        This view suggests consciousness is the <strong>primary reality</strong>, a basic property of the universe (like mass or charge). The brain doesn't create it; it acts as a receiver or filter for a universal field of consciousness.
-                    </p>
-                    <ul class="mt-6 space-y-3 text-gray-300 light:text-gray-700 font-medium">
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-violet text-xl mr-3 leading-none">•</span><strong>Origin:</strong> The ground of all being; uncreated.</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-violet text-xl mr-3 leading-none">•</span><strong>Location:</strong> Non-local and universal (Panpsychism).</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-violet text-xl mr-3 leading-none">•</span><strong>Duration:</strong> Eternal; individual self is a localized expression.</li>
-                        <li class="flex items-start"><span class="text-cosmic-light light:text-cosmic-violet text-xl mr-3 leading-none">•</span><strong>The Hurdle:</strong> The "Combination Problem"—how do micro-conscious elements combine into macro-consciousness?</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    <section id="convergences" class="mb-24">
+      <h2 class="section-title">Where Theories Converge</h2>
+      <p class="text-center muted -mt-4 mb-8">On the cutting edge, physics sometimes echoes ancient non-dualistic ideas.</p>
 
-        <section id="convergences">  
-            <h2 class="section-title">Where Theories Converge</h2>
-            <p class="text-center text-gray-400 light:text-gray-600 -mt-4 mb-12 max-w-4xl mx-auto text-lg">On the cutting edge of theoretical physics, these concepts challenge our reductionist perception of reality, strangely echoing ancient non-dualistic ideas.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="card text-center border-b-4 border-data-a">
-                    <span class="text-6xl block mb-4">🧊</span>
-                    <h3 class="text-2xl font-bold font-display text-cosmic-light light:text-data-a mt-3 mb-2">The Holographic Principle</h3>
-                    <p class="text-gray-400 light:text-gray-600 text-base">
-                        Suggests our 3D reality is mathematically equivalent to information stored on a distant 2D boundary (a surface), implying reality might be an <strong>illusion of dimension</strong>.
-                    </p>
-                </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card text-center">
+          <div class="text-4xl mb-3">🧊</div>
+          <h4 class="font-bold mb-2">The Holographic Principle</h4>
+          <p class="muted">Our 3D reality may map to information on a 2D boundary — suggesting an illusion of dimension.</p>
+        </div>
 
-                <div class="card text-center border-b-4 border-data-b">
-                    <span class="text-6xl block mb-4">💻</span>
-                    <h3 class="text-2xl font-bold font-display text-cosmic-light light:text-data-b mt-3 mb-2">The Simulation Hypothesis</h3>
-                    <p class="text-gray-400 light:text-gray-600 text-base">
-                        Posits that the universe could be an advanced, high-fidelity computer simulation. This would mean physical laws are simply <strong>code</strong>, and matter is information.
-                    </p>
-                </div>
+        <div class="card text-center">
+          <div class="text-4xl mb-3">💻</div>
+          <h4 class="font-bold mb-2">The Simulation Hypothesis</h4>
+          <p class="muted">The universe as code; laws of physics as algorithms.</p>
+        </div>
 
-                <div class="card text-center border-b-4 border-data-c">
-                    <span class="text-6xl block mb-4">👁️</span>
-                    <h3 class="text-2xl font-bold font-display text-cosmic-light light:text-data-c mt-3 mb-2">The Observer Effect</h3>
-                    <p class="text-gray-400 light:text-gray-600 text-base">
-                        In quantum mechanics, the observation of a particle fundamentally affects its properties, hinting at an intrinsic, irreducible link between <strong>consciousness and physical reality</strong>.
-                    </p>
-                </div>
-            </div>
-        </section>
+        <div class="card text-center">
+          <div class="text-4xl mb-3">👁️</div>
+          <h4 class="font-bold mb-2">The Observer Effect</h4>
+          <p class="muted">Observation affects quantum properties — hinting at a link between mind and matter.</p>
+        </div>
+      </div>
+    </section>
 
-    </div>
+  </div>
 
-    <footer class="text-center py-8 mt-16 bg-cosmic-darker light:bg-cosmic-dark text-gray-500 light:text-gray-400">
-        <p class="text-sm">CosmiCanvas | A Data & Philosophical Inquiry | © 2025</p>
-        <p class="text-xs mt-2">Design inspired by the depths of the cosmos.</p>
-    </footer>
+  <footer class="text-center py-8 text-sm muted">CosmiCanvas | A Data & Philosophical Inquiry | © 2025</footer>
 
-    <script>
-        // DARK MODE TOGGLE SCRIPT
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
-        const htmlElement = document.documentElement;
+  <script>
+    // THEME TOGGLE
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const htmlEl = document.documentElement;
 
-        // Function to set the theme
-        function setTheme(mode) {
-            if (mode === 'dark') {
-                htmlElement.classList.add('dark');
-                htmlElement.classList.remove('light');
-                moonIcon.classList.remove('hidden');
-                sunIcon.classList.add('hidden');
-                localStorage.setItem('color-theme', 'dark');
-            } else {
-                htmlElement.classList.remove('dark');
-                htmlElement.classList.add('light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-                localStorage.setItem('color-theme', 'light');
-            }
+    function setTheme(mode){
+      if(mode === 'light'){
+        htmlEl.classList.add('light');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+        localStorage.setItem('color-theme','light');
+      } else {
+        htmlEl.classList.remove('light');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+        localStorage.setItem('color-theme','dark');
+      }
+    }
+
+    // Initialize theme from storage or prefer dark
+    const stored = localStorage.getItem('color-theme');
+    setTheme(stored || 'dark');
+
+    themeToggleBtn.addEventListener('click', ()=>{
+      const current = localStorage.getItem('color-theme') || 'dark';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+      // re-render chart with new palette
+      if(window.compositionChart){ window.compositionChart.destroy(); initializeChart(); }
+    });
+
+    // Chart.js initialization with theme-aware colors
+    function initializeChart(){
+      const ctx = document.getElementById('compositionChart').getContext('2d');
+      const isLight = htmlEl.classList.contains('light');
+      const legendColor = isLight ? '#374151' : '#a1a1aa';
+      const tooltipBg = isLight ? '#003f5c' : '#4c1d95';
+      const borderColor = isLight ? '#ffffff' : '#0b1220';
+
+      window.compositionChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Dark Energy','Dark Matter','Normal Matter'],
+          datasets: [{
+            data: [68,27,5],
+            backgroundColor: ['#003f5c','#58508d','#ff6361'],
+            borderColor: borderColor,
+            borderWidth: 6,
+            hoverOffset: 12
+          }]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false, cutout:'66%',
+          plugins: {
+            legend:{ position:'bottom', labels:{ color:legendColor, font:{size:14, family:"'Inter',sans-serif", weight:'600' }, padding:20 } },
+            tooltip:{ enabled:true, backgroundColor: tooltipBg, titleFont:{size:16, family:"'Space Grotesk',sans-serif", weight:'700'}, bodyFont:{size:14}, callbacks:{ label:function(ctx){ return ` ${ctx.parsed}% of the Universe`; } } }
+          }
         }
+      });
+    }
 
-        // 1. Initial Load: Check localStorage or user's system preference
-        // Defaulting to 'dark' for the "coder vibes" look if no preference is found
-        if (localStorage.getItem('color-theme')) {
-            setTheme(localStorage.getItem('color-theme'));
-        } else {
-            setTheme('dark'); // Default to dark mode
-        }
-
-        // 2. Button Click Handler
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('color-theme');
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-            // Re-render chart on theme change to update colors/canvas context
-            if (window.compositionChart) {
-                 window.compositionChart.destroy();
-                 initializeChart(); 
-            }
-        });
-        
-        
-        // CHART.JS INITIALIZATION (moved into a function for theme switching)
-        function initializeChart() {
-            const ctx = document.getElementById('compositionChart').getContext('2d');
-            
-            // Adjust chart colors based on current mode
-            const isDarkMode = htmlElement.classList.contains('dark');
-            const legendColor = isDarkMode ? '#a1a1aa' : '#374151'; // Gray-400 vs Gray-800
-            const tooltipBg = isDarkMode ? '#4c1d95' : '#003f5c'; // cosmic-purple vs dark blue
-            const borderColor = isDarkMode ? '#1f2937' : '#ffffff'; // cosmic-dark vs white
-
-            window.compositionChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Dark Energy', 'Dark Matter', 'Normal Matter'],
-                    datasets: [{
-                        data: [68, 27, 5],
-                        backgroundColor: [
-                            '#003f5c',  // data-a 
-                            '#58508d',  // data-b 
-                            '#ff6361'   // data-c 
-                        ],
-                        borderColor: borderColor,
-                        borderWidth: 6, 
-                        hoverOffset: 12
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '65%', 
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                color: legendColor,
-                                font: {
-                                    size: 16, 
-                                    family: "'Inter', sans-serif",
-                                    weight: '600'
-                                },
-                                padding: 25
-                            }
-                        },
-                        tooltip: {
-                            enabled: true,
-                            backgroundColor: tooltipBg,
-                            titleFont: {
-                                size: 18,
-                                weight: 'bold',
-                                family: "'Space Grotesk', sans-serif"
-                            },
-                            bodyFont: {
-                                size: 16
-                            },
-                            callbacks: {
-                                label: function(context) {
-                                    return ` ${context.parsed}% of the Universe`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-             // Set the initial state based on theme (handles icon visibility)
-            setTheme(localStorage.getItem('color-theme') || 'dark');
-            initializeChart();
-        });
-
-    </script>
+    document.addEventListener('DOMContentLoaded', ()=>{ initializeChart(); });
+  </script>
 
 </body>
 </html>
