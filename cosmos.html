@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cosmic Canvas — Cosmos</title>
+  <title>Cosmic Canvas : Exploring the Deep Cosmos</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Cosmic Canvas — clear, factual explainers and visuals about cosmology: composition, structure formation, CMB, black holes and exoplanets." />
+  <meta name="description" content="Cosmic Canvas : Deep dives into the composition, structure, and mysteries of our universe." />
 
   <style>
     :root{
@@ -20,38 +20,38 @@
     }
 
     /* animated nebula + stars */
-    .bg-animate{background: radial-gradient(1000px 500px at 12% 16%, rgba(124,58,237,0.10), transparent 8%), radial-gradient(800px 350px at 90% 82%, rgba(6,182,212,0.05), transparent 8%), linear-gradient(180deg,var(--bg-1),var(--bg-2)); background-blend-mode:screen,screen,normal; animation: shift 14s linear infinite;}
+    .bg-animate{background: radial-gradient(1000px 500px at 12% 16%, rgba(124,58,237,0.10), transparent 8%), radial-gradient(800px 350px at 90% 82%, rgba(6,182,212,0.05), transparent 8%), linear-gradient(180deg,var(--bg-1),var(--bg-2)); background-blend-mode:screen,screen,normal; animation: shift 14s linear infinite; background-attachment: fixed;}
     @keyframes shift{0%{background-position:0% 0%,100% 100%,0% 0%}50%{background-position:100% 10%,0% 90%,50% 50%}100%{background-position:0% 0%,100% 100%,0% 0%}}
     .stars::after{content:'';position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(white 1px, transparent 1px);background-size:260px 260px;opacity:0.04;mix-blend-mode:screen}
 
-    body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:var(--muted);min-height:100vh}
-    .glass{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(6px)}
+    body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:var(--muted);min-height:100vh; overflow-x: hidden;}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px)}
     .grad-text{background:linear-gradient(90deg,var(--accent-a),#ec4899,var(--accent-b));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .orb{width:72px;height:72px;border-radius:9999px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(124,58,237,0.16) 30%, rgba(6,182,212,0.06) 60%);box-shadow:0 18px 50px rgba(2,6,23,0.6)}
+    .orb{width:clamp(50px, 8vw, 72px);height:clamp(50px, 8vw, 72px);border-radius:9999px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(124,58,237,0.16) 30%, rgba(6,182,212,0.06) 60%);box-shadow:0 18px 50px rgba(2,6,23,0.6)}
 
-    .section-title{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--muted);margin-bottom:0.75rem}
-    .section-sub{color:var(--muted-2);margin-top:0.4rem}
-    .card{background:var(--card-bg);border-radius:1rem;padding:1.25rem;border:1px solid rgba(255,255,255,0.06);transition:transform .22s ease, box-shadow .22s ease}
+    .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.25rem, 4vw, 1.8rem);font-weight:700;color:var(--muted);margin-bottom:0.75rem}
+    .section-sub{font-size: clamp(0.9rem, 2vw, 1rem); color:var(--muted-2);margin-top:0.4rem; line-height: 1.6;}
+    .card{background:var(--card-bg);border-radius:1rem;padding:1.5rem;border:1px solid rgba(255,255,255,0.06);transition:transform .22s ease, box-shadow .22s ease; height: 100%;}
     .card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(2,6,23,0.6)}
-    .stat-number{font-size:2.25rem;font-weight:800;line-height:1;background-image:linear-gradient(90deg,var(--accent-c),#bc5090);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-number{font-size:clamp(2rem, 6vw, 2.75rem);font-weight:800;line-height:1;background-image:linear-gradient(90deg,var(--accent-c),#bc5090);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .muted{color:var(--muted-2)}
-    .chart-container{position:relative;width:100%;max-width:520px;height:360px;margin:0 auto}
+    .chart-container{position:relative;width:100%;max-width:400px;height:300px;margin:0 auto}
 
-    /* Light theme overrides when placed on html.light */
+    /* Light theme overrides */
     html.light{ --bg-1:#f5f7fb; --bg-2:#e9f0fb; --muted:#0f1724; --muted-2:#334155; --card-bg:rgba(255,255,255,1) }
     html.light .glass{border-color:rgba(15,23,36,0.06);box-shadow:0 10px 25px rgba(2,6,23,0.05)}
 
-    @media (max-width:900px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:640px){.grid-3{grid-template-columns:1fr}.section-title{font-size:1.25rem}}
+    @media (max-width:768px){
+      .header-nav { display: none; }
+    }
   </style>
 </head>
 <body class="bg-animate stars">
 
-  <div class="max-w-6xl mx-auto px-6 py-10">
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row items-center gap-6 glass rounded-2xl p-5 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
+    <header class="flex items-center gap-6 glass rounded-2xl p-4 md:p-5 relative">
       <div class="absolute top-4 right-4">
-        <button id="theme-toggle" aria-label="Toggle theme" class="p-3 rounded-full bg-white/6 hover:scale-105 transition-transform">
+        <button id="theme-toggle" aria-label="Toggle theme" class="p-2 md:p-3 rounded-full bg-white/6 hover:scale-105 transition-transform">
           <svg id="moon-icon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
           <svg id="sun-icon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364l-1.414-1.414M7.05 7.05L5.636 5.636m12.728 0L18.364 7.05M7.05 16.95l-1.414 1.414M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
         </button>
@@ -61,13 +61,13 @@
         <a href="index.html" class="flex items-center gap-3">
           <div class="orb"></div>
           <div>
-            <h1 class="text-2xl md:text-3xl font-extrabold grad-text">Cosmic Canvas</h1>
-            <p class="muted text-sm">Clear, evidence-first explainers</p>
+            <h1 class="text-xl md:text-3xl font-extrabold grad-text leading-tight">Cosmic Canvas</h1>
+            <p class="muted text-xs md:text-sm">Exploring reality through data and insight</p>
           </div>
         </a>
       </div>
 
-      <nav class="ml-auto hidden md:flex gap-6 text-sm font-medium">
+      <nav class="ml-auto hidden lg:flex gap-6 text-sm font-medium header-nav">
         <a href="index.html" class="hover:underline">Home</a>
         <a href="cosmos.html" class="underline">Cosmos</a>
         <a href="science.html" class="hover:underline">Science</a>
@@ -76,107 +76,107 @@
       </nav>
     </header>
 
-    <!-- Hero quick facts -->
-    <section class="my-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-      <div class="card lg:col-span-2">
-        <div class="flex items-start justify-between gap-6">
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full" style="background:linear-gradient(90deg, rgba(124,58,237,0.10), rgba(6,182,212,0.05));font-weight:600;color:var(--muted-2)">🔭 Evidence-driven</div>
+    <section class="my-8 md:my-12 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      <div class="card lg:col-span-2 flex flex-col justify-center">
+        <div class="flex flex-col sm:flex-row items-start justify-between gap-6">
+          <div class="flex-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4" style="background:linear-gradient(90deg, rgba(124,58,237,0.15), rgba(6,182,212,0.10)); font-size: 0.75rem; font-weight:700; color:var(--muted); border: 1px solid rgba(255,255,255,0.1)">🔭 OBSERVATIONAL DATA</div>
             <h2 class="section-title">The Grand Scale of the Universe</h2>
-            <p class="section-sub">A concise, visual tour of the universe — age, size, composition, and the processes that build cosmic structure.</p>
+            <p class="section-sub">A deep look at how our universe is built: its age, its staggering size, and the mysterious elements that hold it all together.</p>
           </div>
-          <div class="text-right">
+          <div class="sm:text-right flex-shrink-0">
             <div class="stat-number">13.8</div>
-            <div class="muted text-sm">Billion years — Age of the Universe</div>
-            <div class="mt-2 muted text-xs">Last updated: 2025</div>
+            <div class="muted text-sm font-semibold uppercase tracking-wider">Billion Years Old</div>
+            <div class="mt-2 muted text-xs opacity-60">Verified cosmological constant</div>
           </div>
         </div>
       </div>
 
-      <div class="card text-center">
-        <h3 class="font-semibold">Quick composition</h3>
-        <div class="chart-container mt-4"><canvas id="compositionChart"></canvas></div>
+      <div class="card flex flex-col items-center justify-center">
+        <h3 class="font-bold text-sm uppercase tracking-widest mb-4">Cosmic Breakdown</h3>
+        <div class="chart-container"><canvas id="compositionChart"></canvas></div>
       </div>
     </section>
 
-    <!-- Composition details -->
+    
     <section class="mb-12">
-      <h3 class="section-title">What is the Universe Made Of?</h3>
-      <p class="section-sub">Only ~5% of the universe is ordinary (baryonic) matter. The rest is dark matter and dark energy — inferred from multiple observations.</p>
+      <h3 class="section-title">Universal Ingredients</h3>
+      <p class="section-sub">Most of what exists is invisible to us. Only about 5% is the "normal" matter that makes up every star, planet, and person you have ever known.</p>
 
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="card">
-          <h4 class="font-semibold">Dark Energy</h4>
-          <p class="muted mt-2">Responsible for the accelerated expansion. Evidence: Type Ia supernova distances, large-scale structure, and CMB fits.</p>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <div class="card border-l-4 border-l-[#06b6d4]">
+          <h4 class="font-bold text-lg mb-2">Dark Energy</h4>
+          <p class="muted text-sm leading-relaxed">This mysterious force drives the universe to expand faster every second. We know it exists because of how distant supernovae behave and the patterns in the Cosmic Microwave Background.</p>
         </div>
 
-        <div class="card">
-          <h4 class="font-semibold">Dark Matter</h4>
-          <p class="muted mt-2">Detected via gravitational effects: galaxy rotation curves, gravitational lensing, Bullet Cluster, and cosmic structure formation simulations.</p>
+        <div class="card border-l-4 border-l-[#58508d]">
+          <h4 class="font-bold text-lg mb-2">Dark Matter</h4>
+          <p class="muted text-sm leading-relaxed">The invisible skeleton of the universe. It doesn't emit light, but its gravity pulls on galaxies, keeping them from flying apart. We see its footprint in gravitational lensing.</p>
         </div>
 
-        <div class="card">
-          <h4 class="font-semibold">Normal (Baryonic) Matter</h4>
-          <p class="muted mt-2">Stars, gas, dust, planets and life — the visible part measured by spectroscopy, surveys and direct telescopes.</p>
+        <div class="card border-l-4 border-l-[#ff6361]">
+          <h4 class="font-bold text-lg mb-2">Normal Matter</h4>
+          <p class="muted text-sm leading-relaxed">Baryonic matter: the atoms and molecules that form gas clouds, solar systems, and life itself. This is the only part we can study through light alone.</p>
         </div>
 
-        <div class="card">
-          <h4 class="font-semibold">Open Questions</h4>
-          <p class="muted mt-2">What is dark matter made of? What is the physics behind dark energy? How did inflation start? These are active research frontiers.</p>
+        <div class="card border-l-4 border-l-white/20">
+          <h4 class="font-bold text-lg mb-2">The Great Unknowns</h4>
+          <p class="muted text-sm leading-relaxed">Current research is focused on identifying the particles behind dark matter and understanding why the expansion of space is accelerating.</p>
         </div>
       </div>
     </section>
 
-    <!-- Structure formation -->
     <section class="mb-12">
-      <h3 class="section-title">Structure Formation</h3>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="card">
-          <h4 class="font-semibold">From fluctuations to galaxies</h4>
-          <p class="muted mt-2">Tiny quantum fluctuations laid down during inflation grew under gravity. Over billions of years they formed the web of cosmic structure we see today.</p>
-        </div>
-        <div class="card">
-          <h4 class="font-semibold">Dark matter halos</h4>
-          <p class="muted mt-2">Halos of dark matter gather gas; baryons cool, fragment and form stars. Simulations reproduce galaxy populations well when dark matter is included.</p>
-        </div>
-        <div class="card">
-          <h4 class="font-semibold">Galaxies & clusters</h4>
-          <p class="muted mt-2">Galaxies merge and evolve. Clusters are the largest gravitationally bound systems — laboratories for cosmology.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Black holes & exoplanets -->
-    <section class="mb-12">
-      <h3 class="section-title">Black Holes & Exoplanets</h3>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="card">
-          <h4 class="font-semibold">Black holes</h4>
-          <p class="muted mt-2">Objects where gravity traps light. Characterised by mass and spin. Observational breakthroughs: gravitational waves and horizon-scale imaging.</p>
-        </div>
-        <div class="card">
-          <h4 class="font-semibold">Exoplanets</h4>
-          <p class="muted mt-2">Thousands discovered; methods include transits, radial velocity and imaging. JWST provides atmospheric spectra for characterisation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Further reading / resources -->
-    <section class="mb-16">
-      <h3 class="section-title">Further Reading & Resources</h3>
+      <h3 class="section-title">How Structure Emerges</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card text-sm muted">Planck & WMAP — CMB missions</div>
-        <div class="card text-sm muted">LIGO/Virgo/KAGRA — gravitational waves</div>
-        <div class="card text-sm muted">JWST & Kepler/TESS — exoplanet discovery</div>
+        <div class="card">
+          <div class="text-2xl mb-3">🌌</div>
+          <h4 class="font-bold mb-2">From Ripples to Worlds</h4>
+          <p class="muted text-sm">Tiny fluctuations at the dawn of time grew into a massive cosmic web. Gravity turned small clusters of matter into the giant galaxies we see today.</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-3">🪐</div>
+          <h4 class="font-bold mb-2">Hidden Scaffolding</h4>
+          <p class="muted text-sm">Dark matter acts as a nursery for galaxies. It pulls in gas, which eventually cools and collapses to ignite the very first stars.</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-3">🔭</div>
+          <h4 class="font-bold mb-2">Bound by Gravity</h4>
+          <p class="muted text-sm">Individual galaxies merge into massive clusters. These are the largest structures in the universe, serving as massive natural laboratories.</p>
+        </div>
       </div>
     </section>
 
-    <footer class="text-center py-6 muted">Cosmic Canvas • Evidence-first cosmology explainers • © 2025 • Varun</footer>
+    <section class="mb-12">
+      <h3 class="section-title">Infinite Gravity & New Worlds</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card bg-gradient-to-br from-transparent to-[#7c3aed0a]">
+          <h4 class="font-bold text-lg mb-2">Black Holes</h4>
+          <p class="muted text-sm leading-relaxed">Areas where gravity is so intense that nothing can escape. We've now captured actual images of their "shadows" and heard the ripples they leave in spacetime through gravitational waves.</p>
+        </div>
+        <div class="card bg-gradient-to-br from-transparent to-[#06b6d40a]">
+          <h4 class="font-bold text-lg mb-2">Exoplanets</h4>
+          <p class="muted text-sm leading-relaxed">We have found thousands of planets orbiting other stars. With the JWST, we are now beginning to peek at their atmospheres to see if any could support life as we know it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h3 class="section-title text-center">Reference Missions</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <span class="px-4 py-2 rounded-lg glass text-xs font-semibold text-white/50 border border-white/5">Planck & WMAP Mission Data</span>
+        <span class="px-4 py-2 rounded-lg glass text-xs font-semibold text-white/50 border border-white/5">LIGO/Virgo Gravitational Waves</span>
+        <span class="px-4 py-2 rounded-lg glass text-xs font-semibold text-white/50 border border-white/5">JWST Atmospheric Research</span>
+      </div>
+    </section>
+
+    <footer class="text-center py-10 border-t border-white/5">
+      <p class="muted text-sm">Cosmic Canvas : Built on Evidence : © 2025</p>
+    </footer>
 
   </div>
 
   <script>
-    // THEME TOGGLE
     const themeToggleBtn = document.getElementById('theme-toggle');
     const moonIcon = document.getElementById('moon-icon');
     const sunIcon = document.getElementById('sun-icon');
@@ -196,18 +196,15 @@
       }
     }
 
-    // initialize theme
     const stored = localStorage.getItem('color-theme');
     setTheme(stored || 'dark');
 
     themeToggleBtn.addEventListener('click', ()=>{
       const current = localStorage.getItem('color-theme') || 'dark';
       setTheme(current === 'dark' ? 'light' : 'dark');
-      // re-render charts if needed
       if(window.compositionChart){ window.compositionChart.destroy(); initializeCompositionChart(); }
     });
 
-    // Composition doughnut
     function initializeCompositionChart(){
       const ctx = document.getElementById('compositionChart').getContext('2d');
       const isLight = htmlEl.classList.contains('light');
@@ -216,8 +213,34 @@
 
       window.compositionChart = new Chart(ctx, {
         type: 'doughnut',
-        data: { labels: ['Dark Energy','Dark Matter','Normal Matter'], datasets: [{ data: [68,27,5], backgroundColor: ['#06b6d4','#58508d','#ff6361'], borderColor: isLight ? '#fff' : '#07101a', borderWidth:6, hoverOffset:12 }] },
-        options: { responsive:true, maintainAspectRatio:false, cutout:'66%', plugins:{ legend:{ position:'bottom', labels:{ color:legendColor, font:{size:13, family:"'Inter',sans-serif", weight:'600'}, padding:12 } }, tooltip:{ backgroundColor: tooltipBg, titleFont:{size:14,family:"'Space Grotesk',sans-serif",weight:'700'}, bodyFont:{size:13}, callbacks:{ label:function(ctx){ return ` ${ctx.parsed}% of the Universe`; } } } } }
+        data: { 
+          labels: ['Dark Energy','Dark Matter','Normal Matter'], 
+          datasets: [{ 
+            data: [68,27,5], 
+            backgroundColor: ['#06b6d4','#58508d','#ff6361'], 
+            borderColor: isLight ? '#fff' : '#07101a', 
+            borderWidth:6, 
+            hoverOffset:12 
+          }] 
+        },
+        options: { 
+          responsive:true, 
+          maintainAspectRatio:false, 
+          cutout:'70%', 
+          plugins:{ 
+            legend:{ 
+              position:'bottom', 
+              labels:{ color:legendColor, font:{size:11, family:"'Inter',sans-serif", weight:'700'}, padding:15, usePointStyle: true } 
+            }, 
+            tooltip:{ 
+              backgroundColor: tooltipBg, 
+              titleFont:{size:14,family:"'Space Grotesk',sans-serif",weight:'700'}, 
+              bodyFont:{size:13}, 
+              padding: 12,
+              callbacks:{ label:function(ctx){ return ` ${ctx.parsed}% Composition`; } } 
+            } 
+          } 
+        }
       });
     }
 
